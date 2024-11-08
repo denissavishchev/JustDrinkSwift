@@ -11,6 +11,8 @@
 		F291559F2CDDE37A002B8534 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291559E2CDDE37A002B8534 /* ContentView.swift */; };
 		F29155A12CDDE37C002B8534 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F29155A02CDDE37C002B8534 /* Assets.xcassets */; };
 		F29155A42CDDE37D002B8534 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F29155A32CDDE37D002B8534 /* Preview Assets.xcassets */; };
+		F29155AD2CDDF323002B8534 /* CircularBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29155AC2CDDF323002B8534 /* CircularBar.swift */; };
+		F29155AF2CDDFC72002B8534 /* WaterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29155AE2CDDFC72002B8534 /* WaterModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		F291559E2CDDE37A002B8534 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F29155A02CDDE37C002B8534 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F29155A32CDDE37D002B8534 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F29155AC2CDDF323002B8534 /* CircularBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularBar.swift; sourceTree = "<group>"; };
+		F29155AE2CDDFC72002B8534 /* WaterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +55,8 @@
 		F291559B2CDDE37A002B8534 /* JustDrink */ = {
 			isa = PBXGroup;
 			children = (
-				F291559C2CDDE37A002B8534 /* JustDrinkApp.swift */,
-				F291559E2CDDE37A002B8534 /* ContentView.swift */,
+				F29155AB2CDDF2C4002B8534 /* Model */,
+				F29155AA2CDDF2B2002B8534 /* View */,
 				F29155A02CDDE37C002B8534 /* Assets.xcassets */,
 				F29155A22CDDE37D002B8534 /* Preview Content */,
 			);
@@ -65,6 +69,24 @@
 				F29155A32CDDE37D002B8534 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F29155AA2CDDF2B2002B8534 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F291559C2CDDE37A002B8534 /* JustDrinkApp.swift */,
+				F291559E2CDDE37A002B8534 /* ContentView.swift */,
+				F29155AC2CDDF323002B8534 /* CircularBar.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F29155AB2CDDF2C4002B8534 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F29155AE2CDDFC72002B8534 /* WaterModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +161,8 @@
 			files = (
 				F291559F2CDDE37A002B8534 /* ContentView.swift in Sources */,
 				F291559D2CDDE37A002B8534 /* JustDrinkApp.swift in Sources */,
+				F29155AD2CDDF323002B8534 /* CircularBar.swift in Sources */,
+				F29155AF2CDDFC72002B8534 /* WaterModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
