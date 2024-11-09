@@ -12,15 +12,17 @@ struct ContentView: View {
         
         VStack{
             CircularBar(value: value)
-            TextField("Enter quantity", text: $quantity)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.decimalPad)
-                .padding()
+//            TextField("Enter quantity", text: $quantity)
+//                .textFieldStyle(RoundedBorderTextFieldStyle())
+//                .keyboardType(.decimalPad)
+//                .padding()
             
-            Button("Add Water") {
-                addWater()
-            }
-            .padding()
+//            Button("Add Water") {
+//                addWater()
+//            }
+//            .padding()
+            WaterButton()
+                .padding()
             List {
                 ForEach(waterList) { water in
                     HStack {
