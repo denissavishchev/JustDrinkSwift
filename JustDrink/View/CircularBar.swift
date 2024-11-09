@@ -46,14 +46,14 @@ struct CircularBar: View {
                     .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.white.opacity(0.1), .white]), startPoint: .topLeading, endPoint: .bottomTrailing))
                 Image("Drop")
                     .resizable()
-                    .foregroundColor(.white.opacity(0.8))
+                    .foregroundColor(.customBlue.opacity(0.9))
                     .frame(width: 32, height: 32)
                     
             }
             .padding(.bottom, 80)
             Text("\(Int((value * 1000).rounded())) ml")
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                .foregroundColor(.white)
+                .foregroundColor(.customBlue)
                 .padding(.top, 80)
         }
         .padding(.vertical, 30)

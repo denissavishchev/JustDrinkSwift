@@ -17,11 +17,23 @@ struct ContentView: View {
 //                .keyboardType(.decimalPad)
 //                .padding()
             
-//            Button("Add Water") {
-//                addWater()
-//            }
-//            .padding()
-            WaterButton()
+            HStack(spacing: 16){
+                WaterButton(title: "200"){
+                    print("200")
+                }
+                WaterButton(title: "300")
+                {
+                    print("300")
+                }
+                WaterButton(title: "400")
+                {
+                    print("400")
+                }
+                WaterButton(title: "500")
+                {
+                    print("500")
+                }
+            }
                 .padding()
             List {
                 ForEach(waterList) { water in
