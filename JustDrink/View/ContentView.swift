@@ -6,8 +6,8 @@ struct ContentView: View {
     @Query var waterList: [WaterModel]
     @Environment(\.modelContext) private var modelContext
     @State private var quantity: String = ""
-    @State private var value = 0.0
-  
+    @State private var value = 0.75
+
     var body: some View {
         
         VStack{
@@ -40,10 +40,12 @@ struct ContentView: View {
                     }
                 }
             }
+            
         }
-        .onAppear {
-            refreshValue()
-        }
+        .background(Color.black)
+//        .onAppear {
+//            refreshValue()
+//        }
     }
        func addWater() {
            let newWater = WaterModel(ml: quantity, type: 1, date: .now)
