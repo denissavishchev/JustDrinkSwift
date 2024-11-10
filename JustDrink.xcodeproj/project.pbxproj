@@ -14,6 +14,7 @@
 		F29155AD2CDDF323002B8534 /* CircularBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29155AC2CDDF323002B8534 /* CircularBar.swift */; };
 		F29155AF2CDDFC72002B8534 /* WaterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29155AE2CDDFC72002B8534 /* WaterModel.swift */; };
 		F2CBBF872CDFA222008A5128 /* WaterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CBBF862CDFA222008A5128 /* WaterButton.swift */; };
+		F2CBBFAF2CE14C64008A5128 /* RadioButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CBBFAE2CE14C64008A5128 /* RadioButtons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		F29155AC2CDDF323002B8534 /* CircularBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularBar.swift; sourceTree = "<group>"; };
 		F29155AE2CDDFC72002B8534 /* WaterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterModel.swift; sourceTree = "<group>"; };
 		F2CBBF862CDFA222008A5128 /* WaterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterButton.swift; sourceTree = "<group>"; };
+		F2CBBFAE2CE14C64008A5128 /* RadioButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				F291559E2CDDE37A002B8534 /* ContentView.swift */,
 				F29155AC2CDDF323002B8534 /* CircularBar.swift */,
 				F2CBBF862CDFA222008A5128 /* WaterButton.swift */,
+				F2CBBFAE2CE14C64008A5128 /* RadioButtons.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2CBBF872CDFA222008A5128 /* WaterButton.swift in Sources */,
+				F2CBBFAF2CE14C64008A5128 /* RadioButtons.swift in Sources */,
 				F291559F2CDDE37A002B8534 /* ContentView.swift in Sources */,
 				F291559D2CDDE37A002B8534 /* JustDrinkApp.swift in Sources */,
 				F29155AD2CDDF323002B8534 /* CircularBar.swift in Sources */,

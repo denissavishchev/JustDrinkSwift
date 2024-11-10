@@ -18,15 +18,7 @@ struct ContentView: View {
 //                .keyboardType(.decimalPad)
 //                .padding()
 //            Button("Add", action: addWater)
-            Section("Priority"){
-                Picker("Priority", selection: $selectedType){
-                    Text("Water").tag(Type.water)
-                    Text("Tea").tag(Type.tea)
-                    Text("Beer").tag(Type.beer)
-                }
-                .pickerStyle(.segmented)
-                .padding(.horizontal, 20)
-            }
+            RadioButtons()
             
             HStack(spacing: 16){
                 WaterButton(title: "200"){

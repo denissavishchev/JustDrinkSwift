@@ -44,7 +44,7 @@ struct CircularBar: View {
                     .stroke(lineWidth: 0.1)
                     .frame(width: 60, height: 60)
                     .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.white.opacity(0.1), .white]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                Image("Drop")
+                Image("Water")
                     .resizable()
                     .foregroundColor(.customBlue.opacity(0.9))
                     .frame(width: 32, height: 32)
