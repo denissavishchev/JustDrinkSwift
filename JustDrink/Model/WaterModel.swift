@@ -20,3 +20,8 @@ class WaterModel{
         self.date = date
     }
 }
+
+enum Type: String, CaseIterable, Identifiable {
+    case water, tea, beer
+    var id: Self { self }
+}

@@ -7,6 +7,7 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var quantity: String = ""
     @State private var value = 0.75
+    @State private var selectedType: Type = .water
 
     var body: some View {
         
@@ -16,6 +17,16 @@ struct ContentView: View {
 //                .textFieldStyle(RoundedBorderTextFieldStyle())
 //                .keyboardType(.decimalPad)
 //                .padding()
+//            Button("Add", action: addWater)
+            Section("Priority"){
+                Picker("Priority", selection: $selectedType){
+                    Text("Water").tag(Type.water)
+                    Text("Tea").tag(Type.tea)
+                    Text("Beer").tag(Type.beer)
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal, 20)
+            }
             
             HStack(spacing: 16){
                 WaterButton(title: "200"){
@@ -95,6 +106,7 @@ struct ContentView: View {
         print(value)
     }
 }
+
 
 #Preview {
     do{
