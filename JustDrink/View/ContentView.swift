@@ -20,23 +20,9 @@ struct ContentView: View {
 //            Button("Add", action: addWater)
             RadioButtons()
             
-            HStack(spacing: 16){
-                WaterButton(title: "200"){
-                    print("200")
-                }
-                WaterButton(title: "300")
-                {
-                    print("300")
-                }
-                WaterButton(title: "400")
-                {
-                    print("400")
-                }
-                WaterButton(title: "500")
-                {
-                    print("500")
-                }
-            }
+            WaterButton(action: {
+                print("200")
+            })
                 .padding()
             List {
                 ForEach(waterList) { water in
