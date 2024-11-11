@@ -11,10 +11,10 @@ import SwiftData
 @Model
 class WaterModel{
     var ml: String
-    var type: Int
+    var type: String
     var date: Date
     
-    init(ml: String = "", type: Int = 1, date: Date = .now) {
+    init(ml: String = "", type: String = "", date: Date = .now) {
         self.ml = ml
         self.type = type
         self.date = date
@@ -24,4 +24,7 @@ class WaterModel{
 enum Type: String, CaseIterable, Identifiable {
     case water, tea, beer
     var id: Self { self }
+
 }
+
+

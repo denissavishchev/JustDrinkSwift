@@ -9,9 +9,8 @@ import SwiftUI
 
 struct WaterButton: View {
     
-    var action: () -> Void 
-    
-    @State private var selectedItem: String = ""
+    @Binding var selectedItem: String
+
     let ml = ["200", "300", "400", "500"]
     
     var body: some View {
@@ -27,7 +26,7 @@ struct WaterButton: View {
                         Text(ml[index])
                             .bold()
                             .font(.system(size: 22))
-                            .foregroundColor(.customNavy)
+                            .foregroundColor(selectedItem == ml[index] ? .customNavy : .gray)
                             .padding(6)
                     }
                     .frame(width: 64, height: 64)
@@ -36,10 +35,15 @@ struct WaterButton: View {
                     .shadow(color: .black.opacity(0.9), radius: 10, x: 0, y: 5)
                 }
                 .frame(width: 80, height: 80)
-                .background(LinearGradient(gradient: Gradient(colors: [.customNavy, .customBlue]), startPoint: .top, endPoint: .bottom))
+                .background(LinearGradient(gradient: Gradient(colors: selectedItem == ml[index]
+                                                              ? [.customNavy, .customBlue]
+                                                              : [.gray, .gray]),
+                                           startPoint: .top, endPoint: .bottom))
                 .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
                 .onTapGesture {
-                    action()
+                    withAnimation{
+                        selectedItem = ml[index]
+                    }
                 }
             }
         }

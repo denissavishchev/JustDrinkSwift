@@ -3,6 +3,7 @@ import SwiftUI
 struct CircularBar: View {
     
     var value: Double
+    var total: Double
     
     var body: some View {
         ZStack{
@@ -30,7 +31,7 @@ struct CircularBar: View {
                 .frame(width: 200, height: 234)
                 .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.clear, .white.opacity(0.7)]), startPoint: .bottomTrailing, endPoint: .topLeading))
             Circle()
-                .trim(from: 0, to: value)
+                .trim(from: 0, to: (value * 1000 / total))
                 .stroke(style: StrokeStyle(lineWidth: 30, lineCap: .round))
                 .frame(width: 242, height: 242)
                 .rotationEffect(.degrees(-90))
@@ -56,10 +57,8 @@ struct CircularBar: View {
                 .foregroundColor(.customBlue)
                 .padding(.top, 80)
         }
-        .padding(.vertical, 30)
+        .padding(.bottom, 30)
+        .padding(.top, 10)
     }
 }
 
-#Preview {
-    CircularBar(value: 0.0)
-}

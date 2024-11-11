@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RadioButtons: View {
     
-    @State private var selectedItem: String = ""
+    @Binding var selectedItem: String
     let icons = ["Water", "Tea", "Beer"]
     
     var body: some View {
@@ -48,6 +48,3 @@ struct RadioButtons: View {
     }
 }
 
-#Preview {
-    RadioButtons()
-}
