@@ -23,9 +23,8 @@ struct ContentView: View {
                 .padding()
             ZStack{
                 RoundedRectangle(cornerRadius: 14)
-                    .frame(width: .infinity, height: 60)
                     .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.blue, .customNavy]), startPoint: .leading, endPoint: .trailing))
-                    .padding(EdgeInsets(top: 0, leading: 18, bottom: 18, trailing: 18))
+                    
                     .overlay{
                         Text("Add")
                             .foregroundStyle(.white)
@@ -34,10 +33,10 @@ struct ContentView: View {
                     }
                 RoundedRectangle(cornerRadius: 14)
                     .stroke(lineWidth: 1)
-                    .frame(width: .infinity, height: 60)
                     .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.white.opacity(0.7), .white.opacity(0.2)]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .padding(EdgeInsets(top: 0, leading: 18, bottom: 18, trailing: 18))
             }
+            .frame(width: 100, height: 60)
+            .padding(EdgeInsets(top: 0, leading: 18, bottom: 18, trailing: 18))
             .onTapGesture {
                 addWater()
             }
