@@ -9,71 +9,42 @@ struct ContentView: View {
     @State private var type: String = ""
     @State private var value = 0.75
     
-    let customFormat = Date.FormatStyle()
-        .month(.abbreviated)
-        .day(.twoDigits)
-        .hour(.defaultDigits(amPM: .abbreviated))
-        .minute(.twoDigits)
-    
     var body: some View {
         VStack{
-            CircularBar(value: value, total: 3000)
-            RadioButtons(selectedItem: $type)
-            WaterButton(selectedItem: $quantity)
-                .padding()
-            ZStack{
-                RoundedRectangle(cornerRadius: 14)
-                    .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.blue, .customNavy]), startPoint: .leading, endPoint: .trailing))
-                    
-                    .overlay{
-                        Text("Add")
-                            .foregroundStyle(.white)
-                            .font(.title).bold()
-                            .padding(.bottom, 18)
+            HStack{
+                Spacer()
+                TypeButtons(selectedItem: $type)
+                Spacer()
+                VStack{
+                    CircularBar(value: value, total: 3000)
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 14)
+                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.blue, .customNavy]), startPoint: .leading, endPoint: .trailing))
+                            
+                            .overlay{
+                                Text("Add")
+                                    .foregroundStyle(.white)
+                                    .font(.title).bold()
+                            }
+                        RoundedRectangle(cornerRadius: 14)
+                            .stroke(lineWidth: 1)
+                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.white.opacity(0.7), .white.opacity(0.2)]), startPoint: .topLeading, endPoint: .bottomTrailing))
                     }
-                RoundedRectangle(cornerRadius: 14)
-                    .stroke(lineWidth: 1)
-                    .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.white.opacity(0.7), .white.opacity(0.2)]), startPoint: .topLeading, endPoint: .bottomTrailing))
-            }
-            .frame(width: 100, height: 60)
-            .padding(EdgeInsets(top: 0, leading: 18, bottom: 18, trailing: 18))
-            .onTapGesture {
-                addWater()
-            }
-            List{
-                ForEach(waterList) { water in
-                    HStack {
-                        VStack(alignment: .leading){
-                            Text("Ml: \(water.ml)")
-                                .foregroundColor(.white)
-                            Text("Date: \(water.date.formatted(customFormat))")
-                                .foregroundColor(.white)
-                        }
-                        Spacer()
-                        Image("\(water.type)")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                            .foregroundStyle(LinearGradient(gradient: Gradient(
-                                colors: [.customNavy, .customBlue.opacity(0.6)]),
-                                startPoint: .bottom, endPoint: .top))
+                    .frame(width: 100, height: 40)
+                    .padding(EdgeInsets(top: 30, leading: 18, bottom: 8, trailing: 18))
+                    .onTapGesture {
+                        addWater()
                     }
-                    .frame(height: 30)
-                    .padding()
-                    .background(Color.black)
-                    .swipeActions {
-                        Button(role: .destructive) {
-                            deleteWater(water)
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }
-                    }
-                    .listRowBackground(Color.black)
-                    .listRowSeparatorTint(.customBlue)
+
                 }
+                Spacer()
+                QuantityButtons(selectedItem: $quantity)
+                Spacer()
             }
-            .listStyle(PlainListStyle())
-            .background(Color.black)
-            .scrollContentBackground(.hidden)
+            TodayList(value: $value)
+            Divider()
+                .background(.blue)
+            HistoryList()
             
         }
         .background(Color.black)
@@ -84,12 +55,6 @@ struct ContentView: View {
        func addWater() {
            let newWater = WaterModel(ml: quantity, type: type, date: .now)
            modelContext.insert(newWater)
-           saveContext()
-           refreshValue()
-       }
-       
-       func deleteWater(_ water: WaterModel) {
-           modelContext.delete(water)
            saveContext()
            refreshValue()
        }

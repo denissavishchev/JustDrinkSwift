@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct RadioButtons: View {
+struct TypeButtons: View {
     
     @Binding var selectedItem: String
-    let icons = ["Water", "Tea", "Beer"]
+    let icons = ["Water", "Tea", "Soda", "Beer"]
     
     var body: some View {
-        HStack(spacing: 24){
+        VStack(spacing: 24){
             ForEach(icons.indices, id:\.self){icon in
                 ZStack{
                     Circle()
