@@ -8,6 +8,25 @@ struct ContentView: View {
     @State private var quantity: String = ""
     @State private var type: String = ""
     @State private var value = 0.75
+    @State private var filteredWaterList: [WaterModel] = []
+    
+    
+    private func fetchTodayWater() {
+            let todayStart = Calendar.current.startOfDay(for: Date())
+            let todayEnd = Calendar.current.date(byAdding: .day, value: 1, to: todayStart)!
+            
+            do {
+                let fetchedWaterList = try modelContext.fetch(
+                    FetchDescriptor<WaterModel>(
+                        predicate: #Predicate { $0.date >= todayStart && $0.date < todayEnd},
+                        sortBy: [SortDescriptor(\WaterModel.date, order: .reverse)]
+                    )
+                )
+                filteredWaterList = fetchedWaterList
+            } catch {
+                print("Failed to fetch data: \(error)")
+            }
+        }
     
     var body: some View {
         VStack{
@@ -41,7 +60,7 @@ struct ContentView: View {
                 QuantityButtons(selectedItem: $quantity)
                 Spacer()
             }
-            TodayList(value: $value)
+            TodayList(value: $value, filteredWaterList: $filteredWaterList)
             Divider()
                 .background(.blue)
             HistoryList()
@@ -49,6 +68,7 @@ struct ContentView: View {
         }
         .background(Color.black)
         .onAppear {
+            fetchTodayWater()
             refreshValue()
         }
     }
@@ -56,6 +76,7 @@ struct ContentView: View {
            let newWater = WaterModel(ml: quantity, type: type, date: .now)
            modelContext.insert(newWater)
            saveContext()
+           fetchTodayWater()
            refreshValue()
        }
     
@@ -70,7 +91,7 @@ struct ContentView: View {
     func refreshValue(){
         value = 0
         withAnimation{
-            for water in waterList {
+            for water in filteredWaterList {
                 value += Double(water.ml) ?? 0
             }
         }

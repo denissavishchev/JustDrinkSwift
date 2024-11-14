@@ -11,17 +11,35 @@ import SwiftData
 struct TodayList: View {
     
     @Binding var value: Double
-    @Query var waterList: [WaterModel]
+    @Query(sort: [SortDescriptor(\WaterModel.date, order: .reverse)]) private var waterList: [WaterModel]
     @Environment(\.modelContext) private var modelContext
     let customFormat = Date.FormatStyle()
         .month(.abbreviated)
         .day(.twoDigits)
         .hour(.defaultDigits(amPM: .abbreviated))
         .minute(.twoDigits)
+    @Binding var filteredWaterList: [WaterModel]
+    
+    private func fetchTodayWater() {
+            let todayStart = Calendar.current.startOfDay(for: Date())
+            let todayEnd = Calendar.current.date(byAdding: .day, value: 1, to: todayStart)!
+            
+            do {
+                let fetchedWaterList = try modelContext.fetch(
+                    FetchDescriptor<WaterModel>(
+                        predicate: #Predicate { $0.date >= todayStart && $0.date < todayEnd},
+                        sortBy: [SortDescriptor(\WaterModel.date, order: .reverse)]
+                    )
+                )
+                filteredWaterList = fetchedWaterList
+            } catch {
+                print("Failed to fetch data: \(error)")
+            }
+        }
     
     var body: some View {
         List{
-            ForEach(waterList) { water in
+            ForEach(filteredWaterList) { water in
                 HStack {
                     VStack(alignment: .leading){
                         Text("Ml: \(water.ml)")
@@ -54,11 +72,16 @@ struct TodayList: View {
         .listStyle(PlainListStyle())
         .background(Color.black)
         .scrollContentBackground(.hidden)
+        .onAppear {
+            fetchTodayWater()
+            refreshValue()
+                }
     }
     
     func deleteWater(_ water: WaterModel) {
         modelContext.delete(water)
         saveContext()
+        fetchTodayWater()
         refreshValue()
     }
  
@@ -73,7 +96,7 @@ struct TodayList: View {
     func refreshValue(){
         value = 0
         withAnimation{
-            for water in waterList {
+            for water in filteredWaterList {
                 value += Double(water.ml) ?? 0
             }
         }
