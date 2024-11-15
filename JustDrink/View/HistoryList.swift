@@ -11,9 +11,10 @@ import SwiftData
 struct HistoryList: View {
     
     @Query(sort: [SortDescriptor(\WaterModel.date, order: .forward)]) private var waterList: [WaterModel]
-    let customFormat = Date.FormatStyle()
-        .month(.abbreviated)
+    let day = Date.FormatStyle()
         .day(.twoDigits)
+    let month = Date.FormatStyle()
+        .month(.abbreviated)
     var body: some View {
         
         let groupedWaterList = groupWaterByDate(waterList).reversed()
@@ -22,24 +23,22 @@ struct HistoryList: View {
             ScrollView(.horizontal){
                 HStack(alignment: .bottom){
                     ForEach(groupedWaterList, id: \.key) { date, waterOnDate in
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 20)
-                                .frame(width: 50, height: (waterOnDate.reduce(0) { $0 + (Double($1.ml) ?? 0) }) <= 3000 ? ((waterOnDate.reduce(0) { $0 + (Double($1.ml) ?? 0) }) / 15) : 200)
+                        VStack{
+                            RoundedRectangle(cornerRadius: 12)
+                                .frame(width: 40, height: (waterOnDate.reduce(0) { $0 + (Double($1.ml) ?? 0) }) <= 3000 ? ((waterOnDate.reduce(0) { $0 + (Double($1.ml) ?? 0) }) / 15) : 200)
                                 .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.blue, .customNavy]), startPoint: .bottom, endPoint: .top))
-                                .overlay{
-                                    Text("\(date.formatted(customFormat))")
-                                        .foregroundStyle(.white)
-                                }
+                            Text("\(date.formatted(day))")
+                                .foregroundStyle(.white)
+                                .font(.system(size: 14))
+                            Text("\(date.formatted(month))")
+                                .foregroundStyle(.white)
+                                .font(.system(size: 14))
                         }
                     }
                 }
             }
-//            .rotationEffect(.degrees(180))
             .padding()
         }
-//        .listStyle(PlainListStyle())
-//        .background(Color.black)
-//        .scrollContentBackground(.hidden)
     }
     
     
